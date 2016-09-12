@@ -6,9 +6,12 @@ import {
   Text,
   View
 } from 'react-native';
-/**导入一个自己写的js文件，暂时没有用上*/
-import Splash from './app/Splash.js';
+/**导入一个自己写的js文件*/
+import Welcome from './app/page/Welcome.js';
+//import Splash from './app/Splash.js';
+//import AppMain from './app/page/AppMain.js';
+
 
 // 注册应用(registerComponent)后才能正确渲染
 // 注意：只把应用作为一个整体注册一次，而不是每个组件/模块都注册
-AppRegistry.registerComponent('reactNativeTest', () => Splash);
+AppRegistry.registerComponent('reactNativeTest', () => Welcome);
