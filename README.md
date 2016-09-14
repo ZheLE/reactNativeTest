@@ -16,4 +16,4 @@
 
 ![](/screenshot/2.png)
 
-#详情请看博客：[](http://blog.csdn.net/u012987546/article/details/52537411)
+#详情请看博客：http://blog.csdn.net/u012987546/article/details/52537411
