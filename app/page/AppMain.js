@@ -56,7 +56,10 @@ class AppMain extends React.Component {
         this.viewPager.setPage(numer - 1);
     }
 
-
+    /**
+     * 渲染界面
+     * @returns {XML}
+     */
     render() {
         return (
         <View style={styles.flex1}>
@@ -71,9 +74,11 @@ class AppMain extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
+
                 <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
                     <Text style={{fontSize: 20, textAlign: 'center'}} >首页 </Text>
                 </View>
+
                 <View style={{justifyContent:'flex-end',alignItems:'center',flex:1,flexDirection:'row'}}>
                     <TouchableOpacity onPress={()=>{this.onClickTitleBar(1)}}>
                         <Image source={require('../image/ic_action_search.png')}
@@ -81,6 +86,8 @@ class AppMain extends React.Component {
                     </TouchableOpacity>
                 </View>
             </View>
+
+
 
             <Text style={styles.line}></Text>
 
@@ -127,7 +134,25 @@ class AppMain extends React.Component {
     }
 }
 
-
+/**
+ * 属性介绍：
+ *
+ * flexDirection:
+ *
+ * style中指定flexDirection可以决定布局的主轴。子元素是应该沿着水平轴(row)方向排列，还是沿着竖直轴(column)方向排列呢？默认值是竖直轴(column)方向
+ *
+ * justifyContent:
+ *
+ *style中指定justifyContent可以决定其子元素沿着主轴的排列方式。子元素是应该靠近主轴的起始端还是末尾段分布呢？亦或应该均匀分布？对应的这些可选项有：flex-start、center、flex-end、space-around以及space-between
+ *
+ * alignItems:
+ *
+ * 在组件的style中指定alignItems可以决定其子元素沿着次轴（与主轴垂直的轴，比如若主轴方向为row，则次轴方向为column）的排列方式。子元素是应该靠近次轴的起始端还是末尾段分布呢？亦或应该均匀分布？对应的这些可选项有：flex-start、center、flex-end以及stretch。
+ *
+ * backgroundColor  背景颜色
+ *
+ * borderColor 边界颜色
+ */
 var styles = {
     flex1: {
         flex: 1,
@@ -142,7 +167,6 @@ var styles = {
     },
     headerMenu: {
         flexDirection: 'row',
-
         backgroundColor: '#F2F2F2',
         height: 50,
         paddingHorizontal: 10,
