@@ -10,18 +10,28 @@ import{
     TouchableOpacity,
     Image,
     TextInput,
+    InteractionManager,
     StyleSheet,
 } from 'react-native';
 
+/**导入GoBack工具类*/
 import { NaviGoBack } from '../utils/CommonUtils';
+/**导入Toast工具类*/
+import { toastShort } from '../utils/ToastUtil';
+import AppMain from './AppMain';
 
 var password='';
 var username='';
+var navigator;
 
 class Login extends Component {
 
     constructor(props) {
         super(props);
+
+        navigator= this.props.navigator;//这个是可以的
+        //navigator= this.props;//这个是不可以的
+
         /**
          * 初始化方法
          * @type {function(this:Login)}
@@ -34,8 +44,57 @@ class Login extends Component {
      * 返回
      */
     buttonBackAction(){
-        const {navigator} = this.props;
         return NaviGoBack(navigator);
+    }
+
+    /**
+     * 点击登录
+     */
+    btn_login(){
+        //用户登录
+        if(username === ''){
+            toastShort('用户名不能为空...');
+            return;
+        }
+        if(password === ''){
+            toastShort('密码不能为空...');
+            return;
+        }
+        if(username=='liujun' && password=='123'){
+            toastShort('登录成功');
+            username='';
+            password='';
+            //跳转到首页
+            InteractionManager.runAfterInteractions(() => {
+                navigator.resetTo({
+                    component: AppMain,
+                    name: 'AppMain'
+                });
+            });
+        }else{
+            toastShort('用户名或密码错误');
+            return;
+        }
+    }
+
+    /**
+     * 忘记密码
+     */
+    find_password(){
+
+    }
+
+    /**
+     * 点击注册
+     */
+    btn_register(){
+        //用户注册
+        //InteractionManager.runAfterInteractions(() => {
+        //    navigator.push({
+        //        component: Register,
+        //        name: 'Register'
+        //    });
+        //});
     }
 
     /**
@@ -69,7 +128,7 @@ class Login extends Component {
 
                     <Text style={{flex:2}} ></Text>
 
-                    <TouchableOpacity onPress={() => {this.buttonBackAction()}}
+                    <TouchableOpacity onPress={() => {this.btn_register()}}
                                       style={styles.topbar_left_item}>
 
                         <Text >注册</Text>
@@ -110,21 +169,18 @@ class Login extends Component {
                     />
                 </View>
 
-                <TouchableOpacity onPress={() => {this.buttonBackAction()}}
+                <TouchableOpacity onPress={() => {this.find_password()}}
                                   style={{height:48,flexDirection:'row',justifyContent:'flex-end',alignItems:'center'}}>
                     <Text style={{fontSize:13}}>忘记密码？</Text>
 
                 </TouchableOpacity>
 
-
-                <View style={styles.btn_login}>
-                    <TouchableOpacity onPress={() => {this.buttonBackAction()}}
-                                      >
-                        <Text style={{color:'white',fontSize:18}}>登录</Text>
-
-                    </TouchableOpacity>
-
-                </View>
+                <TouchableOpacity onPress={() => {this.btn_login()}}
+                >
+                    <View style={styles.btn_login}>
+                            <Text style={{color:'white',fontSize:18}}>登录</Text>
+                    </View>
+                </TouchableOpacity>
 
                 <View style={{flex:2}}></View>
 

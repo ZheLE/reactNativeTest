@@ -13,10 +13,11 @@ import {
     Text,
     Platform
 } from 'react-native';
-/**导包*/
+/**导包:一个启动界面*/
 import Splash from '../Splash';
 /**导一个工具类*/
 import { NaviGoBack } from '../utils/CommonUtils';
+
 var _navigator;
 
 class Welcome extends React.Component {

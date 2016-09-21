@@ -15,18 +15,22 @@ import {
     AppRegistry,
     ViewPagerAndroid,
     TouchableOpacity,
+    InteractionManager,
     Image,
 } from 'react-native';
 
 /**导包*/
 import { NaviGoBack } from '../utils/CommonUtils';
-
+/**导包:一个登录界面*/
+import Login from './Login';
 var _navigator;
 
 class AppMain extends React.Component {
 
     constructor(props) {
         super(props);
+        _navigator=this.props.navigator;//获取导航器，该导航器是从Splash.js中传过来的
+
         this.goBack = this.goBack.bind(this);
         //监听返回事件
         BackAndroid.addEventListener('hardwareBackPress', this.goBack);
@@ -55,6 +59,27 @@ class AppMain extends React.Component {
     onClickTitleBar(numer){
         this.viewPager.setPage(numer - 1);
     }
+
+    /**
+     * 点击了page
+     * @param page
+     */
+    onClickPage(page){
+        if(page==1){
+            //跳转到登录界面
+            InteractionManager.runAfterInteractions(() => {
+                _navigator.resetTo({
+                    component: Login,
+                    name: 'Login'
+                });
+            });
+        }else if(page==2){
+
+        }else if(page==3){
+
+        }
+    }
+
 
     /**
      * 渲染界面
@@ -99,8 +124,12 @@ class AppMain extends React.Component {
 
 
                 <View style={styles.page}>
-                    <Text>Page 1</Text>
+                    <TouchableOpacity onPress={()=>{this.onClickPage(1)}}>
+                        <Text>Page 1:点击跳转到登录界面</Text>
+                    </TouchableOpacity>
+
                 </View>
+
                 <View style={styles.page}>
                     <Text>Page 2</Text>
                 </View>
